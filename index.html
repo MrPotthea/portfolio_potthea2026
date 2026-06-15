@@ -3,7 +3,574 @@
 <html lang="en" class="no-js">
 <!-- BEGIN HEAD -->
 
+<head><!DOCTYPE html>
+<html lang="en" class="no-js">
+<!-- BEGIN HEAD -->
+
 <head>
+    <meta charset="utf-8" />
+    <title>Phun Potthea - Portfolio v26 | Interactive Game Edition</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <!-- GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="img/logo-dark.png" type="image/png">
+    <!-- PAGE LEVEL PLUGIN STYLES -->
+    <link href="css/animate.css" rel="stylesheet">
+
+    <!-- THEME STYLES -->
+    <link href="css/layout.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <style>
+        /* custom game styles + rewards animation */
+        .game-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding: 25px 20px;
+            transition: all 0.2s ease;
+            margin-bottom: 20px;
+        }
+        .game-question {
+            font-size: 1.7rem;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            color: #2c3e4f;
+        }
+        .game-options .btn-option {
+            margin: 8px 8px 8px 0;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 500;
+            transition: 0.2s;
+            background: #f1f4f9;
+            border: none;
+            color: #2c3e4f;
+        }
+        .game-options .btn-option:hover {
+            background: #17bed2;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .game-scoreboard {
+            background: #17bed2;
+            color: white;
+            border-radius: 40px;
+            padding: 5px 16px;
+            display: inline-block;
+            font-weight: 600;
+        }
+        .reward-badge {
+            background: #f9e45b;
+            color: #2c3e4f;
+            border-radius: 40px;
+            padding: 6px 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            margin-top: 15px;
+            animation: pulseReward 0.6s ease;
+        }
+        @keyframes pulseReward {
+            0% { transform: scale(0.9); opacity: 0; }
+            80% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .reward-coin {
+            font-size: 1.3rem;
+        }
+        .game-feedback {
+            font-size: 0.95rem;
+            margin-top: 12px;
+            padding: 8px 12px;
+            border-radius: 30px;
+            background: #eef2f7;
+        }
+        .reset-game-btn {
+            background: none;
+            border: 1px solid #17bed2;
+            color: #17bed2;
+            border-radius: 40px;
+            padding: 5px 18px;
+            margin-left: 12px;
+            transition: 0.2s;
+        }
+        .reset-game-btn:hover {
+            background: #17bed2;
+            color: white;
+        }
+        .game-progress {
+            height: 6px;
+            background: #e0e7ed;
+            border-radius: 10px;
+            margin: 20px 0 10px;
+        }
+        .game-progress-bar {
+            background: #17bed2;
+            width: 0%;
+            height: 6px;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        .nav-item-game {
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .game-question { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<!-- END HEAD -->
+
+<!-- BODY -->
+<body id="body" data-spy="scroll" data-target=".header">
+
+    <!--========== HEADER ==========-->
+    <header class="header navbar-fixed-top">
+        <!-- Navbar -->
+        <nav class="navbar" role="navigation">
+            <div class="container">
+                <div class="menu-container js_nav-item">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="toggle-icon"></span>
+                    </button>
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a class="logo-wrap" href="#body">
+                            <img class="logo-img logo-img-main" src="img/logo.png" alt="Asentus Logo">
+                            <img class="logo-img logo-img-active" src="img/logo-dark.png" alt="Asentus Logo">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="collapse navbar-collapse nav-collapse">
+                    <div class="menu-container">
+                        <ul class="nav navbar-nav navbar-nav-right">
+                            <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#body">Home</a></li>
+                            <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#about">About</a></li>
+                            <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#experience">Experience</a></li>
+                            <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#work">Work</a></li>
+                            <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#game-section">Game</a></li>
+                            <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--========== END HEADER ==========-->
+
+    <!--========== SLIDER ==========-->
+    <div class="promo-block parallax-window" data-parallax="scroll" data-image-src="img/1920x1080/01.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="promo-block-divider">
+                        <h1 class="promo-block-title">Phun <br /> Potthea</h1>
+                        <p class="promo-block-text">IT Officer ,Web Developer &amp; Software Developer</p>
+                    </div>
+                    <ul class="list-inline">
+                        <li><a href="https://www.facebook.com/PottheaPhun1" class="social-icons"><i class="icon-social-facebook"></i></a></li>
+                        <li><a href="#" class="social-icons"><i class="icon-social-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--========== SLIDER ==========-->
+
+    <!--========== PAGE LAYOUT ==========-->
+    <!-- About -->
+    <div id="about">
+        <div class="container content-lg">
+            <div class="row">
+                <div class="col-sm-3 sm-margin-b-30">
+                    <div class="text-right sm-text-left">
+                        <h2 class="margin-b-0">Intro</h2>
+                        <p>What I am all about.</p>
+                    </div>
+                </div>
+                <div class="col-sm-8 col-sm-offset-1">
+                    <div class="margin-b-60">
+                        <p>Hello, I'm Phun Potthea, a passionate Software Developer and IT enthusiast with experience in
+                            web development, database management, and business application development. I enjoy creating
+                            modern digital solutions that help businesses improve efficiency and productivity.</p>
+                        <p>My expertise includes developing websites, managing Oracle and MySQL databases, designing
+                            user-friendly interfaces, and building enterprise applications using Java, C#, PHP, HTML,
+                            CSS, JavaScript, and SQL.</p>
+                    </div>
+                    <!-- Progress Boxes (kept same) -->
+                    <div class="progress-box"><h5>Java <span class="color-heading pull-right">70%</span></h5><div class="progress"><div class="progress-bar bg-color-base" role="progressbar" data-width="70"></div></div></div>
+                    <div class="progress-box"><h5>C# .NET <span class="color-heading pull-right">80%</span></h5><div class="progress"><div class="progress-bar bg-color-base" role="progressbar" data-width="80"></div></div></div>
+                    <div class="progress-box"><h5>SQL & Oracle<span class="color-heading pull-right">85%</span></h5><div class="progress"><div class="progress-bar bg-color-base" role="progressbar" data-width="85"></div></div></div>
+                    <div class="progress-box"><h5>PHP <span class="color-heading pull-right">75%</span></h5><div class="progress"><div class="progress-bar bg-color-base" role="progressbar" data-width="75"></div></div></div>
+                    <div class="progress-box"><h5>Laravel <span class="color-heading pull-right">75%</span></h5><div class="progress"><div class="progress-bar bg-color-base" role="progressbar" data-width="75"></div></div></div>
+                    <div class="progress-box"><h5>HTML5 <span class="color-heading pull-right">99%</span></h5><div class="progress"><div class="progress-bar bg-color-base" role="progressbar" data-width="99"></div></div></div>
+                    <div class="progress-box"><h5>CSS <span class="color-heading pull-right">95%</span></h5><div class="progress"><div class="progress-bar bg-color-base" role="progressbar" data-width="95"></div></div></div>
+                    <div class="progress-box"><h5>JavaScript <span class="color-heading pull-right">82%</span></h5><div class="progress"><div class="progress-bar bg-color-base" role="progressbar" data-width="82"></div></div></div>
+                    <div class="progress-box"><h5>Networking <span class="color-heading pull-right">84%</span></h5><div class="progress"><div class="progress-bar bg-color-base" role="progressbar" data-width="84"></div></div></div>
+                    <div class="progress-box"><h5>Linux <span class="color-heading pull-right">70%</span></h5><div class="progress"><div class="progress-bar bg-color-base" role="progressbar" data-width="70"></div></div></div>
+                    <div class="progress-box"><h5>Illustrator <span class="color-heading pull-right">87%</span></h5><div class="progress"><div class="progress-bar bg-color-base" role="progressbar" data-width="87"></div></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End About -->
+
+    <!-- Experience -->
+    <div id="experience">
+        <div class="bg-color-sky-light" data-auto-height="true">
+            <div class="container content-lg">
+                <div class="row">
+                    <div class="col-sm-3 sm-margin-b-30">
+                        <div class="text-right sm-text-left">
+                            <h2 class="margin-b-0">Experience</h2>
+                            <p>Building Digital Solutions & Business Applications.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 col-sm-offset-1">
+                        <div class="row row-space-2 margin-b-4">
+                            <div class="col-md-4 md-margin-b-4"><div class="service" data-height="height"><div class="service-element"><i class="service-icon icon-globe"></i></div><div class="service-info"><h3>Web Development</h3><p class="margin-b-5">Developing responsive websites using HTML5, CSS3, JavaScript, PHP, and modern web technologies.</p></div></div></div>
+                            <div class="col-md-4 md-margin-b-4"><div class="service bg-color-base wow zoomIn" data-height="height"><div class="service-element"><i class="service-icon color-white icon-layers"></i></div><div class="service-info"><h3 class="color-white">Database Management</h3><p class="color-white margin-b-5">Experience with Oracle Database, SQL Server, MySQL, data analysis, and reporting systems.</p></div></div></div>
+                            <div class="col-md-4"><div class="service" data-height="height"><div class="service-element"><i class="service-icon icon-screen-desktop"></i></div><div class="service-info"><h3>Software Development</h3><p class="margin-b-5">Building desktop and enterprise applications using Java, C#, and modern development frameworks.</p></div></div></div>
+                            <div class="col-md-4 md-margin-b-4"><div class="service bg-color-base wow zoomIn" data-height="height"><div class="service-element"><i class="service-icon color-white icon-screen-desktop"></i></div><div class="service-info"><h3 class="color-white">IT Support</h3><p class="color-white margin-b-5">Providing technical support, troubleshooting hardware, software, network issues, system installation, and user assistance.</p></div></div></div>
+                            <div class="col-md-4"><div class="service" data-height="height"><div class="service-element"><i class="service-icon icon-shield"></i></div><div class="service-info"><h3>Cyber Security (RUPP)</h3><p class="margin-b-5">Completed cyber security assignments at the Royal University of Phnom Penh (RUPP), focusing on network security, vulnerability assessment, risk management, and security best practices.</p></div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Experience -->
+
+    <!-- Work Section (original works) -->
+    <div id="work">
+        <div class="container content-lg">
+            <div class="row">
+                <div class="col-sm-3 sm-margin-b-30"><div class="text-right sm-text-left"><h2 class="margin-b-0">Works</h2><p>I build the real value.</p></div></div>
+                <div class="col-sm-8 col-sm-offset-1">
+                    <div class="masonry-grid row row-space-2">
+                        <div class="masonry-grid-sizer col-xs-6 col-sm-6 col-md-1"></div>
+                        <div class="masonry-grid-item col-xs-12 col-sm-6 col-md-6 margin-b-4"><div class="work work-popup-trigger"><div class="work-overlay"><img class="full-width img-responsive" src="img/800x400/01.jpg" alt="IT Infrastructure Project"></div><div class="work-popup-overlay"><div class="work-popup-content"><a href="javascript:void(0);" class="work-popup-close">Hide</a><div class="margin-b-30"><h3 class="margin-b-5">Enterprise Network Security Upgrade</h3><span>IT Officer | Cybersecurity &amp; Infrastructure</span></div><div class="row"><div class="col-sm-8 work-popup-content-divider sm-margin-b-20"><div class="margin-t-10 sm-margin-t-0"><p>Led a complete overhaul of the company's network security architecture. Implemented next-generation firewalls, intrusion detection systems, and zero-trust protocols across 5 office locations.</p><p>As the IT Officer, I managed the migration from legacy systems to a modern, cloud-ready infrastructure, resulting in a 60% reduction in security incidents and 99.99% uptime.</p></div></div><div class="col-sm-4"><div class="margin-t-10 sm-margin-t-0"><p class="margin-b-5"><strong>Role:</strong> Lead IT Officer</p></div></div></div></div></div></div></div>
+                        <div class="masonry-grid-item col-xs-12 col-sm-6 col-md-6 margin-b-4"><div class="work work-popup-trigger"><div class="work-overlay"><img class="full-width img-responsive" src="img/397x400/pu_thea.png" alt="Adventure Photography Series"></div><div class="work-popup-overlay"><div class="work-popup-content"><a href="javascript:void(0);" class="work-popup-close">Hide</a><div class="margin-b-30"><h3 class="margin-b-5">Peaks of the Himalayas</h3><span>Photographer Adventurer | Expedition &amp; Visual Storytelling</span></div><div class="row"><div class="col-sm-8 work-popup-content-divider sm-margin-b-20"><div class="margin-t-10 sm-margin-t-0"><p>Embarked on a 21-day solo expedition through the Annapurna Circuit, capturing the raw beauty of the world's highest peaks. This series documents the journey from lush subtropical forests to arid high-altitude deserts.</p><p>This is a personal project done for fun and passion in my free time away from my full-time job.</p></div></div><div class="col-sm-4"><div class="margin-t-10 sm-margin-t-0"><p class="margin-b-5"><strong>Role:</strong> Photographer &amp; Explorer</p><p class="margin-b-5"><strong>Project Type:</strong> Personal / Hobby</p></div></div></div></div></div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Work -->
+
+    <!-- ========== GAME SECTION: "GAME ABOUT ME" with SCORE & REWARDS ========== -->
+    <div id="game-section">
+        <div class="container content-lg" style="padding-top: 20px;">
+            <div class="row">
+                <div class="col-sm-3 sm-margin-b-30">
+                    <div class="text-right sm-text-left">
+                        <h2 class="margin-b-0">Game</h2>
+                        <p>About Me Quiz · Score & Rewards</p>
+                    </div>
+                </div>
+                <div class="col-sm-8 col-sm-offset-1">
+                    <div class="game-card wow fadeInUp" data-wow-duration=".5s">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <h4 style="margin:0;"><i class="icon-game-controller"></i> “Guess Me Better” – Trivia Challenge</h4>
+                            </div>
+                            <div class="col-xs-4 text-right">
+                                <span class="game-scoreboard" id="scoreDisplay">Score: 0</span>
+                                <button class="reset-game-btn" id="resetGameBtn">⟳ Reset</button>
+                            </div>
+                        </div>
+                        <div class="game-progress"><div class="game-progress-bar" id="gameProgressBar"></div></div>
+                        <div id="gameQuestionArea">
+                            <div class="game-question" id="questionText">Loading fun facts...</div>
+                            <div class="game-options" id="optionsContainer"></div>
+                        </div>
+                        <div id="gameFeedback" class="game-feedback"><i class="icon-bubble"></i> Pick an answer and learn about me!</div>
+                        <div id="rewardArea"></div>
+                    </div>
+                    <p class="text-muted" style="margin-top: 12px;"><small> Each correct answer = +10 points. Unlock rewards at 30, 60, and 90 points! </small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ========== END GAME SECTION ========== -->
+
+    <!-- Contact -->
+    <div id="contact">
+        <div class="bg-color-sky-light">
+            <div class="container content-lg">
+                <div class="row">
+                    <div class="col-sm-3 sm-margin-b-30"><div class="text-right sm-text-left"><h2 class="margin-b-0">Contacts</h2><p>Hire me.</p></div></div>
+                    <div class="col-sm-8 col-sm-offset-1">
+                        <div class="row">
+                            <div class="col-md-3 col-xs-6 md-margin-b-30"><h5>Location</h5><a href="#">Street 271, Phnom Penh</a></div>
+                            <div class="col-md-3 col-xs-6 md-margin-b-30"><h5>Phone</h5><a href="#">+855 86 349 187</a></div>
+                            <div class="col-md-3 col-xs-6"><h5>Email</h5><a href="mailto:#">pottheamr@gmail.com</a></div>
+                            <div class="col-md-3 col-xs-6"><h5>Telegram</h5><a href="https://t.me/yourusername" target="_blank">@potthea9 / 086349187</a></div>
+                        </div>
+                    </div>
+                </div>
+                <!--// end row -->
+            </div>
+        </div>
+    </div>
+    <!-- End Contact -->
+    <!--========== END PAGE LAYOUT ==========-->
+
+    <!--========== FOOTER ==========-->
+    <footer class="footer">
+        <div class="content container">
+            <div class="row">
+                <div class="col-xs-6"><img class="footer-logo" src="img/logo-dark.png" alt="Aircv Logo"></div>
+                <div class="col-xs-6 text-right sm-text-left"><p>Phun Potthea Bros Smos Kampot Province</p></div>
+            </div>
+        </div>
+    </footer>
+    <!--========== END FOOTER ==========-->
+
+    <!-- Back To Top -->
+    <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
+
+    <!-- JAVASCRIPTS -->
+    <script src="vendor/jquery.min.js" type="text/javascript"></script>
+    <script src="vendor/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="vendor/jquery.easing.js" type="text/javascript"></script>
+    <script src="vendor/jquery.back-to-top.js" type="text/javascript"></script>
+    <script src="vendor/jquery.smooth-scroll.js" type="text/javascript"></script>
+    <script src="vendor/jquery.wow.min.js" type="text/javascript"></script>
+    <script src="vendor/jquery.parallax.min.js" type="text/javascript"></script>
+    <script src="vendor/jquery.appear.js" type="text/javascript"></script>
+    <script src="vendor/masonry/jquery.masonry.pkgd.min.js" type="text/javascript"></script>
+    <script src="vendor/masonry/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+    <script src="js/layout.min.js" type="text/javascript"></script>
+    <script src="js/components/progress-bar.min.js" type="text/javascript"></script>
+    <script src="js/components/masonry.min.js" type="text/javascript"></script>
+    <script src="js/components/wow.min.js" type="text/javascript"></script>
+
+    <!-- Game logic: about me quiz, score, rewards -->
+    <script>
+        $(document).ready(function() {
+            // ---------- QUIZ DATA: all about Phun Potthea (based on portfolio content) ----------
+            const quizData = [
+                {
+                    question: "What is Phun Potthea's primary professional role?",
+                    options: ["Graphic Designer", "IT Officer & Software Developer", "Marketing Specialist", "Teacher"],
+                    correct: 1
+                },
+                {
+                    question: "Which database technology does Phun Potthea have the highest expertise in (85%)?",
+                    options: ["MongoDB", "SQL & Oracle", "PostgreSQL", "Firebase"],
+                    correct: 1
+                },
+                {
+                    question: "Where did Phun Potthea complete cyber security assignments?",
+                    options: ["IT Academy", "Royal University of Phnom Penh (RUPP)", "Singapore Poly", "MIT"],
+                    correct: 1
+                },
+                {
+                    question: "What personal adventure project is featured in the portfolio (photography series)?",
+                    options: ["Safari in Africa", "Peaks of the Himalayas", "Amazon Rainforest", "Great Wall of China"],
+                    correct: 1
+                },
+                {
+                    question: "Which programming language skill is listed at 99% proficiency?",
+                    options: ["JavaScript", "Python", "HTML5", "C++"],
+                    correct: 2
+                },
+                {
+                    question: "What kind of support does Potthea provide as IT Officer?",
+                    options: ["Only software coding", "Technical support, troubleshooting hardware & network", "Legal consulting", "Accounting"],
+                    correct: 1
+                },
+                {
+                    question: "Which PHP framework is mentioned in skills?",
+                    options: ["Symfony", "CodeIgniter", "Laravel", "CakePHP"],
+                    correct: 2
+                },
+                {
+                    question: "What percentage is shown for C# .NET skill?",
+                    options: ["70%", "80%", "85%", "90%"],
+                    correct: 1
+                },
+                {
+                    question: "Which social media link is active on the portfolio?",
+                    options: ["Instagram", "Twitter", "Facebook", "YouTube"],
+                    correct: 2
+                },
+                {
+                    question: "What hobby does Potthea enjoy (Photographer Adventurer project)?",
+                    options: ["Mountain expedition & photography", "Painting", "Swimming", "Gaming competitions"],
+                    correct: 0
+                }
+            ];
+
+            // game state
+            let currentQuestionIndex = 0;
+            let totalScore = 0;
+            let answered = false;
+            let rewardsUnlocked = []; // store earned rewards to avoid duplicates
+            let totalQuestions = quizData.length;
+
+            // DOM elements
+            const questionEl = $('#questionText');
+            const optionsContainer = $('#optionsContainer');
+            const scoreDisplay = $('#scoreDisplay');
+            const gameFeedback = $('#gameFeedback');
+            const rewardArea = $('#rewardArea');
+            const progressBar = $('#gameProgressBar');
+
+            // helper: update UI (score and progress bar)
+            function updateUI() {
+                scoreDisplay.text(`Score: ${totalScore}`);
+                let progressPercent = ((currentQuestionIndex) / totalQuestions) * 100;
+                if (answered && currentQuestionIndex === totalQuestions && totalScore === totalQuestions*10) progressPercent = 100;
+                else if (!answered) progressPercent = (currentQuestionIndex / totalQuestions)*100;
+                progressBar.css('width', `${Math.min(progressPercent,100)}%`);
+            }
+
+            // check & grant rewards based on score thresholds
+            function checkAndGrantRewards() {
+                const rewardThresholds = [
+                    { score: 30, title: "🌟 Knowledge Seeker", desc: "You earned the 'Curious Dev' badge! +10 insight" },
+                    { score: 60, title: "🏆 Tech Explorer", desc: "Awesome! You know Potthea's journey well – Unlocked 'Full Stack Adventurer' reward." },
+                    { score: 90, title: "🎖️ Master of Portfolio", desc: "INCREDIBLE! You're a true fan – GOLDEN REWARD: Personalized shoutout & virtual coffee ☕" }
+                ];
+                for(let thr of rewardThresholds) {
+                    if(totalScore >= thr.score && !rewardsUnlocked.includes(thr.score)) {
+                        rewardsUnlocked.push(thr.score);
+                        const rewardHtml = `
+                            <div class="reward-badge wow zoomIn" style="animation-duration:0.4s;">
+                                <span class="reward-coin">🏅</span> <strong>${thr.title}</strong> — ${thr.desc}
+                            </div>
+                        `;
+                        rewardArea.prepend(rewardHtml);
+                        // auto fade out after 5 sec? but keep visible, user can see. Add little sound-like animation.
+                        setTimeout(() => {
+                            $('.reward-badge').first().css('opacity','0.9');
+                        }, 100);
+                        // trigger wow effect again
+                        if (typeof WOW !== 'undefined') new WOW().init();
+                    }
+                }
+                if(totalScore >= 100 && !rewardsUnlocked.includes('final100')){
+                    rewardsUnlocked.push('final100');
+                    rewardArea.prepend(`<div class="reward-badge"><span class="reward-coin">💎</span> ULTIMATE CHAMPION: Complete mastery — you’ve unlocked the secret 'Code Ninja' status!</div>`);
+                }
+            }
+
+            // load current question
+            function loadQuestion() {
+                if(currentQuestionIndex >= totalQuestions) {
+                    // game finished
+                    questionEl.text("🎉 Congratulations! You've completed the 'Game About Me'! 🎉");
+                    optionsContainer.html('<p class="text-center">You answered all questions. Click Reset to play again and improve your score! 🚀</p>');
+                    gameFeedback.html('<i class="icon-star"></i> Amazing! You know Phun Potthea so well! Thank you for playing.');
+                    updateUI();
+                    answered = true;
+                    return;
+                }
+                answered = false;
+                const qData = quizData[currentQuestionIndex];
+                questionEl.text(qData.question);
+                let btnsHtml = '';
+                qData.options.forEach((opt, idx) => {
+                    btnsHtml += `<button class="btn btn-option" data-opt-index="${idx}">${opt}</button>`;
+                });
+                optionsContainer.html(btnsHtml);
+                gameFeedback.html('<i class="icon-question"></i> Choose your answer & earn points!');
+                updateUI();
+            }
+
+            // handle answer
+            function handleAnswer(selectedIdx) {
+                if(answered) {
+                    gameFeedback.html('<i class="icon-info"></i> You already answered this! Next question will appear after moving forward? Wait... actually click next? We auto advance');
+                    return;
+                }
+                if(currentQuestionIndex >= totalQuestions) return;
+                const currentQ = quizData[currentQuestionIndex];
+                const isCorrect = (selectedIdx === currentQ.correct);
+                if(isCorrect) {
+                    totalScore += 10;
+                    gameFeedback.html(`<i class="icon-check"></i> ✅ Correct! +10 points. ${currentQ.options[currentQ.correct]} is right!`);
+                    // reward check
+                    checkAndGrantRewards();
+                } else {
+                    gameFeedback.html(`<i class="icon-close"></i> ❌ Oops! The correct answer was "${currentQ.options[currentQ.correct]}". Better luck next round!`);
+                }
+                answered = true;
+                // update score display and progress
+                updateUI();
+                // Move to next question after short delay
+                setTimeout(() => {
+                    if(currentQuestionIndex + 1 <= totalQuestions) {
+                        currentQuestionIndex++;
+                        if(currentQuestionIndex < totalQuestions) {
+                            loadQuestion();
+                        } else if(currentQuestionIndex === totalQuestions) {
+                            // game complete
+                            loadQuestion(); // this will show final message
+                            if(totalScore === totalQuestions*10) {
+                                gameFeedback.html("<i class='icon-trophy'></i> PERFECT SCORE! You're a legend!");
+                            } else {
+                                gameFeedback.html(`<i class='icon-game-controller'></i> Game finished! Final score: ${totalScore}/${totalQuestions*10} ✨. Reset to try for rewards.`);
+                            }
+                            checkAndGrantRewards();
+                            updateUI();
+                        }
+                    }
+                }, 900);
+            }
+
+            // reset game fully
+            function resetGame() {
+                currentQuestionIndex = 0;
+                totalScore = 0;
+                answered = false;
+                rewardsUnlocked = [];
+                rewardArea.empty();
+                // reshuffle? keep same order but fresh
+                loadQuestion();
+                gameFeedback.html('<i class="icon-refresh"></i> Game reset! Answer questions to earn score and unlock rewards!');
+                updateUI();
+                // clear any extra badges but not necessary
+            }
+
+            // event delegation for answer buttons
+            optionsContainer.on('click', '.btn-option', function(e) {
+                if(answered) {
+                    gameFeedback.html('<i class="icon-hourglass"></i> Please wait or reset game to restart.');
+                    return;
+                }
+                const selectedIdx = parseInt($(this).data('opt-index'));
+                handleAnswer(selectedIdx);
+            });
+
+            $('#resetGameBtn').on('click', function() {
+                resetGame();
+            });
+
+            // initial load
+            loadQuestion();
+            // force wow reinit for new rewards
+            if (typeof WOW !== 'undefined') new WOW().init();
+        });
+    </script>
+</body>
+<!-- END BODY -->
+</html>
     <meta charset="utf-8" />
     <title>Phun Potthea - Portfolio v26</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
